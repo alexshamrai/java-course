@@ -11,14 +11,13 @@ public class HomeWork2Ex1 {
         Scanner console = new Scanner(System.in);
         console.useDelimiter("\n"); // set end line as Delimeter (to accept spaces in the entered string)
 
-                final String str1 = "Курс: Java core"; // 1я строка
+        final String str1 = "Курс: Java core"; // 1я строка
         final String str2 = "Студент"; // 2я строка
         // 3я строка - ФИО
         System.out.println("Введите ваше ФИО:");
         String str3 = console.next();
 
         int maxStringLength = getMaxStringLength(str1, str2, str3); // length of the max string
-
 
         asterisk(maxStringLength);
         title(str1, maxStringLength);
