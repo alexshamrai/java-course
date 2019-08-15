@@ -7,7 +7,7 @@ public class HomeWork2Ex1 {
     public static void main(String[] args) {
 
         Scanner console = new Scanner(System.in);
-        console.useDelimiter("\n");
+        console.useDelimiter("\n"); // set end line as Delimeter (to accept spaces in the entered string)
 
         String str1 = "Курс: Java core"; // 1я строка
         String str2 = "Студент"; // 2я строка
