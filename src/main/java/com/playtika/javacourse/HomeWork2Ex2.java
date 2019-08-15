@@ -4,41 +4,60 @@ import java.util.Scanner;
 
 public class HomeWork2Ex2 {
 
+    static final int DEFAULT_MAX = 0; // Default max value
+    static final int DEFAULT_MIN = 9; // Default min value
+
     public static void main(String[] args) {
 
         Scanner console = new Scanner(System.in);
         System.out.println("Введите число:");
         long variable = console.nextLong();
 
-        maxmin(variable);
+        int lengthOfVar = getLengthOfLong(variable);
+
+        System.out.printf("Наименьшее число: %d \n", getMin(variable, lengthOfVar));
+        System.out.printf("Наибольшее число: %d", getMax(variable, lengthOfVar));
     }
 
-    public static void maxmin(long variable) {
+    public static int getMax(long variable, int lengthOfVar) {
+        int max = DEFAULT_MAX;
 
-        String StringVar = Long.toString(variable);
-        int n = StringVar.length();
-
-        long min = 9;
-        long max = 0;
-
-        for (int i=0; i < n; i++){
+        for (int i=0; i < lengthOfVar; i++){
             long divider = (long) Math.pow(10, i); // divide variavle to 10^i on each iteration
             long number = (variable/divider) % 10; // define the number on each iteration
-            System.out.println(number);
 
-            if (number < min){
-                min = number;
-            }
-
-            if (number > max){
-                max = number;
+            if ((int)number > max){
+                max = (int)number;
             }
 
         }
+        return max;
+    }
 
-        System.out.printf("Наименьшее число: %d \n" , min);
-        System.out.printf("Наибольшее число: %d", max);
+    public static int getMin(long variable, int lengthOfVar) {
+        int min = DEFAULT_MIN;
 
+        for (int i=0; i < lengthOfVar; i++){
+            long divider = (long) Math.pow(10, i); // divide variavle to 10^i on each iteration
+            long number = (variable/divider) % 10; // define the number on each iteration
+
+            if ((int)number < min){
+                min = (int)number;
+            }
+
+        }
+        return min;
+    }
+
+    public static int getLengthOfLong(long variable) {
+        String stringVar = Long.toString(variable);
+        int length = stringVar.length();
+        return length;
     }
 
 }
+
+
+
+
+

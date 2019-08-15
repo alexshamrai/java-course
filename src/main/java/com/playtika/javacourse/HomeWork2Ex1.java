@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class HomeWork2Ex1 {
 
-    static final int SIDE_ASTERISK = 4; // +4 additional asterisks acording to frame format "* <string> *"
+    static final int SIDE_ASTERISK = 4; // +4 additional asterisks aсcording to frame format "* <string> *"
 
     public static void main(String[] args) {
 
