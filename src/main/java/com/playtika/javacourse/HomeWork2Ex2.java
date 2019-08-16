@@ -8,7 +8,6 @@ public class HomeWork2Ex2 {
     static final int DEFAULT_MIN = 9; // Default min value
 
     public static void main(String[] args) {
-
         Scanner console = new Scanner(System.in);
         System.out.println("Введите число:");
         long variable = console.nextLong();
@@ -19,6 +18,7 @@ public class HomeWork2Ex2 {
         System.out.printf("Наибольшее число: %d", getMax(variable, lengthOfVar));
     }
 
+    // Define Max number of the variable
     public static int getMax(long variable, int lengthOfVar) {
         int max = DEFAULT_MAX;
 
@@ -29,11 +29,11 @@ public class HomeWork2Ex2 {
             if ((int)number > max){
                 max = (int)number;
             }
-
         }
         return max;
     }
 
+    // Define Min number of the variable
     public static int getMin(long variable, int lengthOfVar) {
         int min = DEFAULT_MIN;
 
@@ -44,11 +44,11 @@ public class HomeWork2Ex2 {
             if ((int)number < min){
                 min = (int)number;
             }
-
         }
         return min;
     }
 
+    // Define length of the variable
     public static int getLengthOfLong(long variable) {
         String stringVar = Long.toString(variable);
         int length = stringVar.length();
