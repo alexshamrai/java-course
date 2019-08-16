@@ -12,11 +12,14 @@ public class HomeWork2Ex3 {
         System.out.printf("Общее число собеседований: %d", getInterviewValue(numberOfProgrammers));
     }
 
+    // methof which returns amount of Interviews
     public static int getInterviewValue(int numberOfProgrammers){
          if (numberOfProgrammers == 1) {
             return 0;
-        }
-        int interviewValue = getInterviewValue(numberOfProgrammers - 1) + (numberOfProgrammers - 1);
+         }
+
+        int interviewValue = getInterviewValue(--numberOfProgrammers) + numberOfProgrammers;
+
         return interviewValue;
     }
 }
