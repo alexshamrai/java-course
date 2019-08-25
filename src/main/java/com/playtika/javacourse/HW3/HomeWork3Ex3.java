@@ -4,7 +4,6 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class HomeWork3Ex3 {
     public static void main(String[] args) {
-        //int[] arr = {1, 2, 3, 4, 5, 6, 33, 11, 66, 9, 77, 100};
         int length = getLength();
         int arr[] = fillArray(length);
         displayArray(arr);
