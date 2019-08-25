@@ -37,6 +37,10 @@ public class HomeWork3Ex1{
             if(str.charAt(i) == str.charAt((length-1) - i)) {
                 answer = true;
             }
+            else{
+                answer = false;
+                return answer;
+            }
         }
         return answer;
     }
