@@ -14,14 +14,12 @@ public class HomeWork3Ex2 {
         console.useDelimiter("\n"); // set end line as Delimeter (to accept spaces in the entered string)
 
         System.out.println("Введите строку:");
-        String input = console.next();
-        return input;
+        return console.next();
     }
 
     // get reversed single word using string builder
     static String getReversedWord(String word){
-        StringBuilder stringBuilderWord = new StringBuilder(word);
-        stringBuilderWord = stringBuilderWord.reverse();
+        StringBuilder stringBuilderWord = new StringBuilder(word).reverse();
         return stringBuilderWord.toString();
     }
 
@@ -31,11 +29,10 @@ public class HomeWork3Ex2 {
 
         for (int i = 0; i < subStrings.length; i++){
             concatString.append(getReversedWord(subStrings[i]));
-            if (i != subStrings.length-1){
+            if (i != subStrings.length - 1){
                 concatString.append(" ");
             }
         }
-
         return concatString.toString();
     }
 }
