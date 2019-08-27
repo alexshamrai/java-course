@@ -11,14 +11,11 @@ public class HomeWork3Ex3 {
     }
 
     // display the Array in console
-    static void displayArray (int[] arr){
+    static void displayArray(int[] arr){
         int length = arr.length;
 
         for (int i = 0; i < length; i++) {
-            System.out.print(arr[i]);
-            if (i != (length - 1)) {
-                System.out.print(" ");
-            }
+            System.out.print(String.format("%d ", arr[i]));
         }
         System.out.println("");
     }
@@ -43,7 +40,7 @@ public class HomeWork3Ex3 {
         Scanner console = new Scanner(System.in);
 
         do {
-            System.out.println("Введите длину массива (положительное число от 10 до 100:");
+            System.out.println("Введите длину массива (положительное число от 10 до 100):");
             length = console.nextInt();
             if (length < 10 || length > 100) {
                 System.out.println("Невенрный ввод. Число должно быть от 10 до 100.");
@@ -58,7 +55,7 @@ public class HomeWork3Ex3 {
         int[] filledArray = new int[length];
 
         for (int i = 0; i < length; i++) {
-            filledArray[i] = ThreadLocalRandom.current().nextInt(0, 100);
+            filledArray[i] = ThreadLocalRandom.current().nextInt(100);
         }
         return filledArray;
     }
