@@ -8,8 +8,8 @@ public class WordSource {
             "dog",
             "cat",
             "flower",
-            "doughter",
-            "fameli"
+            "daughter",
+            "family"
     };
 
     public String getWord() {
