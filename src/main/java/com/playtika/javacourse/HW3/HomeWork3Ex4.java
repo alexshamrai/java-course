@@ -1,6 +1,7 @@
 package com.playtika.javacourse.HW3;
 
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class HomeWork3Ex4 {
 
@@ -19,20 +20,23 @@ public class HomeWork3Ex4 {
     static String askInputForParameter(String parameterString){
         Scanner console = new Scanner(System.in);
         console.useDelimiter("\n");
-        System.out.println("Please, enter your " + parameterString);
+        System.out.println("Please, enter your " + parameterString + ": ");
         return console.next();
     }
 
     static boolean isValidFullName(String fullName) {
-        return true;
+        Pattern pattern = Pattern.compile("^[a-zA-Z\\s\\-]+");
+        return pattern.matcher(fullName).matches();
     }
 
     static boolean isValidMobilePhone(String mobilePhone) {
-        return false;
+        Pattern pattern = Pattern.compile("^\\+(380)(\\d){2}(\\d){7}$");
+        return pattern.matcher(mobilePhone).matches();
     }
 
     static boolean isValidEmail(String email) {
-        return false;
+        Pattern pattern = Pattern.compile("^[A-Z0-9._-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+        return pattern.matcher(email).matches();
     }
 
     static void checkFullName(String fullName) {
