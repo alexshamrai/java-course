@@ -30,7 +30,7 @@ public class HomeWork3Ex4 {
     }
 
     static boolean isValidMobilePhone(String mobilePhone) {
-        Pattern pattern = Pattern.compile("^\\+(380)(\\d){2}(\\d){7}$");
+        Pattern pattern = Pattern.compile("^\\+(380)(66|97|63)(\\d){7}$");
         return pattern.matcher(mobilePhone).matches();
     }
 
@@ -47,7 +47,7 @@ public class HomeWork3Ex4 {
 
     static void checkmobilePhone(String mobilePhone) {
         if (!isValidMobilePhone(mobilePhone)) {
-            System.out.println("Mobile phone is invalid. Only digits are allowed in the following form: +380(XX)(XXXXXXX)");
+            System.out.println("Mobile phone is invalid");
         }
     }
 
