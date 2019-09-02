@@ -11,10 +11,14 @@ public class Point {
         this.y = y;
     }
 
-    //distance 
-    public float distance(Point pointTo) {
-        //TODO implement logic for distance calculation
-        return x;
+    //distance from one point to the other using the following formula: sqrt( (x1 - x2)^2 + (y1 - y2)^2 )
+    public double distance(Point pointTo) {
+        return Math.sqrt((Math.pow((this.x - pointTo.x),2) + Math.pow((this.y - pointTo.y),2)));
+    }
+
+    @Override
+    public String toString() {
+        return "(" + x + ";" + y+ ")";
     }
 
 }
