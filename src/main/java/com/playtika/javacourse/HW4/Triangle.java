@@ -1,50 +1,66 @@
 package com.playtika.javacourse.HW4;
 
 public class Triangle {
-    Point a;
-    Point b;
-    Point c;
+    private Point a;
+    private Point b;
+    private Point c;
+    private double sideA;
+    private double sideB;
+    private double sideC;
+    private double perimeter;
+    private double square;
+
 
     public Triangle(Point a, Point b, Point c) {
         this.a = a;
         this.b = b;
         this.c = c;
+        this.sideA = a.getDistance(b);
+        this.sideB = b.getDistance(c);
+        this.sideC = c.getDistance(a);
+        this.perimeter = this.perimeter();
+        this.square = this.square();
     }
+
     // perimeter calculation
-    public double perimeter() {
-        return a.distance(b) + b.distance(c) + c.distance(a);
+    private double perimeter() {
+        return a.getDistance(b) + b.getDistance(c) + c.getDistance(a);
     }
 
     // square calculation using Heron's formula
-    public double square() {
-        return Math.sqrt((this.perimeter()/2) * (this.perimeter()/2 - a.distance(b)) * (this.perimeter()/2 - b.distance(c)) * (this.perimeter()/2 - c.distance(a)) );
+    private double square() {
+        return Math.sqrt((perimeter/2)*(perimeter/2 - sideA)*(perimeter/2 - sideB)*(perimeter/2 - sideC));
     }
 
     // define the type of triangle Isosceles/Equilateral/Rectangular/Random
-    public String type() {
-        if (a.distance(b)==b.distance(c) || a.distance(b)==c.distance(a) || b.distance(c)==c.distance(a)) {
-            return "Isosceles";
+    private String type() {
+        if (sideA==sideB || sideA==sideC || sideB==sideC) {
+            return TrianglesTypes.ISOSCELES.getTypeName();
         }
-        else if (a.distance(b)==b.distance(c) && b.distance(c)==c.distance(a)) {
-            return "Equilateral";
+        else if (sideA==sideB && sideB==sideC) {
+            return TrianglesTypes.EQUILATERAL.getTypeName();
         }
-        else if ( Math.pow(a.distance(b),2) == Math.pow(b.distance(c),2) + Math.pow(c.distance(a),2) || Math.pow(b.distance(c),2) == Math.pow(a.distance(b),2)+Math.pow(c.distance(a),2) || Math.pow(c.distance(a),2) == Math.pow(b.distance(c),2) + Math.pow(c.distance(a),2)) {
-            return "Rectangular";
+        else if ( Math.pow(sideA,2) == Math.pow(sideB,2) + Math.pow(sideC,2) || Math.pow(sideB,2) == Math.pow(sideA,2)+Math.pow(sideC,2) || Math.pow(sideC,2) == Math.pow(sideB,2) + Math.pow(sideA,2)) {
+            return TrianglesTypes.RECTANGULAR.getTypeName();
         }
         else {
-            return "Random";
+            return TrianglesTypes.RANDOM.getTypeName();
         }
+    }
+
+    public String getType() {
+        return this.type();
     }
 
     // check that given triangle can exist using length of each side ( A+B>C & A+C>B & C+B>A)
     public boolean isValid() {
-        if ( a.distance(b) + b.distance(c) > c.distance(a) && a.distance(b) + c.distance(a) > b.distance(c) && c.distance(a) + b.distance(c) > a.distance(b)){
+        if (sideA + sideB > sideC && sideA + sideC >sideB && sideC + sideB > sideA){
             return true;
         }
         return false;
     }
     @Override
     public String toString() {
-        return "Triangle [A" + a + " B" + b + " C" + c + "]";
+        return String.format("Triangle[A%s B%s C%s]%nPerimeter: %f%nSquare %f", a, b, c, perimeter, square);
     }
 }

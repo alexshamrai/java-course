@@ -10,7 +10,7 @@ public class HomeWork4 {
     public static void main(String[] args) {
         Triangle[] triangles = generateTriangles(AMOUNT_OF_GENERATED_TRIANGLES);
         int typeNumber = getConsoleInput();
-        showOutput(triangles, typeNumber);
+        findGivenTriangle(triangles, typeNumber);
     }
 
     // generate given amount of triangles
@@ -18,10 +18,7 @@ public class HomeWork4 {
         Triangle[] triangles = new Triangle[amount];
         System.out.println("Generating " + amount + " triangles...");
         for (int i = 0; i < amount; ) {
-            Point a = new Point(new Random().nextInt(1000), new Random().nextInt(1000));
-            Point b = new Point(new Random().nextInt(1000), new Random().nextInt(1000));
-            Point c = new Point(new Random().nextInt(1000), new Random().nextInt(1000));
-            Triangle triangle = new Triangle(a, b, c);
+            Triangle triangle = new Triangle(generatePoint(), generatePoint(), generatePoint());
             if (triangle.isValid()) {
                 triangles[i] = triangle;
                 i++;
@@ -30,44 +27,21 @@ public class HomeWork4 {
         return triangles;
     }
 
-    private static int findGivenTriangle(Triangle[] triangles, int typeNumber) {
-        String type = typeNumberToString(typeNumber);
-        int i;
+    private static Point generatePoint() {
+        return new Point (new Random().nextInt(1000), new Random().nextInt(1000));
+    }
 
-        for (i = 0; i < triangles.length; i++) {
-            if (triangles[i].type() == type) {
-                return i;
+    private static void findGivenTriangle(Triangle[] triangles, int typeNumber) {
+        String type = TrianglesTypes.values()[typeNumber-1].getTypeName();
+        for (int i = 0; i < triangles.length; i++) {
+            if (triangles[i].getType().equals(type)) {
+                System.out.printf("%s triangle is found.%nIndex: %d%n%s ", type, i, triangles[i].toString());
+                break;
+            } else {
+                if (i == triangles.length - 1) {
+                    System.out.printf( "%s triangle is not found!", type);
+                }
             }
-        }
-        return -1;
-    }
-
-    //show result in console
-    static void showOutput(Triangle[] triangles, int typeNumber) {
-        int triangleIndex = findGivenTriangle(triangles, typeNumber);
-        if (triangleIndex == -1) {
-            System.out.println(typeNumberToString(typeNumber) + " triangle is not found");
-        }
-        else {
-            System.out.println(typeNumberToString(typeNumber) + " triangle is found");
-            System.out.println("Index: " + triangleIndex);
-            System.out.println(triangles[triangleIndex]);
-            System.out.println("Perimeter: " + triangles[triangleIndex].perimeter());
-            System.out.println("Square: " + triangles[triangleIndex].square());
-        }
-    }
-
-    // convert nymber of type to string
-    static String typeNumberToString(int typeNumber) {
-        switch (typeNumber) {
-            case 1:
-                return "Isosceles";
-            case 2:
-                return "Equilateral";
-            case 3:
-                return "Rectangular";
-            default:
-                return "Random";
         }
     }
 
@@ -75,11 +49,11 @@ public class HomeWork4 {
     static int getConsoleInput(){
         int type;
         Scanner console = new Scanner(System.in);
-        System.out.println("Choose the type of triangle:");
-        System.out.println("1.Isosceles ");
-        System.out.println("2.Equilateral ");
-        System.out.println("3.Rectangular ");
-        System.out.println("4.Random ");
+        // output types of triangles using enum
+        System.out.println("Choose the type of triangle:" );
+        for (int i = 0; i < 4; i++) {
+            System.out.println(TrianglesTypes.values()[i]);
+        }
 
         do {
             type = console.nextInt();
