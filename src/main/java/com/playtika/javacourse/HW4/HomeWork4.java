@@ -28,11 +28,11 @@ public class HomeWork4 {
     }
 
     private static Point generatePoint() {
-        return new Point (new Random().nextInt(1000), new Random().nextInt(1000));
+        return new Point (new Random().nextInt(100), new Random().nextInt(100));
     }
 
     private static void findGivenTriangle(Triangle[] triangles, int typeNumber) {
-        String type = TrianglesTypes.values()[typeNumber-1].getTypeName();
+        String type = TrianglesTypes.getNameByType(typeNumber);
         for (int i = 0; i < triangles.length; i++) {
             if (triangles[i].getType().equals(type)) {
                 System.out.printf("%s triangle is found.%nIndex: %d%n%s ", type, i, triangles[i].toString());

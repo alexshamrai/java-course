@@ -25,8 +25,20 @@ public enum TrianglesTypes {
         return typeName;
     }
 
-    @Override
+        @Override
     public String toString() {
         return type + " " + typeName;
     }
+
+    // validation of the type number entered
+    public static String getNameByType(int type) {
+        String name = null;
+        for (TrianglesTypes value : values()) {
+            if (value.type == type) {
+                name = value.typeName;
+            }
+        }
+        return name;
+    }
+
 }
