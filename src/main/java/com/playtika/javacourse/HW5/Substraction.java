@@ -1,8 +1,7 @@
 package com.playtika.javacourse.HW5;
 
 /**
- * Операция вичитания
- * @author Andrey
+ * Операция вычитания
  */
 public class Substraction implements BinaryOperation {
 

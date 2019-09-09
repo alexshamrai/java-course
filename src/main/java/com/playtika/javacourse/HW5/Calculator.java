@@ -2,10 +2,8 @@ package com.playtika.javacourse.HW5;
 
 /**
  *
- * @author Andrey
  */
 public class Calculator {
-
 
     public double calculate(double val1, double val2, String operator) {
         BinaryOperation operation = getOperationFor(operator);
@@ -18,20 +16,25 @@ public class Calculator {
         return operation.resultFor(val1, val2);
     }
 
+
+    //define operator via comparing with enum parameters (returns class of needed operation or null)
     private BinaryOperation getOperationFor(String operator) {
-        if ("*".equals(operator)) {
-            return new Multiplication();
-        } else if ("-".equals(operator)) {
-            return new Substraction();
+            for(OperatorsAvailable Available: OperatorsAvailable.values()){
+                if (operator.equals(Available.getOperatorString())) {
+                    return new OperatorFactory().getOperator(Available);
+                }
+            }
+            return null;
         }
 
-        return null;
-    }
-
     public static void main(String[] args) {
+        Parser string = new Parser();
         Calculator calculator = new Calculator();
+        double val1 = 5.0;
+        double val2 = 2.0;
+        String operator = "+";
 
-        System.out.println( calculator.calculate(456.546, 545.5465, "*") );
-        System.out.println( calculator.calculate(456.546, 545.5465, "-") );
+        System.out.println(calculator.calculate(5.0, 2.0, operator));
+
     }
 }
