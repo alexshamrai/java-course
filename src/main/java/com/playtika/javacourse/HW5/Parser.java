@@ -4,19 +4,34 @@ import java.util.Scanner;
 
 public class Parser {
     private String string;
+    private String operator;
+    private double leftOperand;
+    private double rightOperand;
 
-    public void askStringFromConsole(){
+    public Parser() {
         Scanner console = new Scanner(System.in);
         console.useDelimiter("\n");
-        System.out.println("Please, enter your " + parameterString + ": ");
-        return console.next();
+        System.out.println("Enter expression:");
+        this.string = console.next();;
     }
 
+    public void parse() {
+        String arrayExpression[] = string.split(" ");
+        operator = arrayExpression[1];
+        leftOperand = Double.parseDouble(arrayExpression[0]);
+        rightOperand = Double.parseDouble(arrayExpression[2]);
+    }
 
+    public String getOperator(){
+        return operator;
+    }
 
-    public String defineOperator(String string){
-        //TODO define operator from the string
-        return "+";
+    public double getLeftOperand() {
+        return leftOperand;
+    }
+
+    public double getRightOperand() {
+        return rightOperand;
     }
 
 }

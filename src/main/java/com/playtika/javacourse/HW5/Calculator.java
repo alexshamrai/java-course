@@ -28,13 +28,11 @@ public class Calculator {
         }
 
     public static void main(String[] args) {
-        Parser string = new Parser();
+        Parser expression = new Parser();
         Calculator calculator = new Calculator();
-        double val1 = 5.0;
-        double val2 = 2.0;
-        String operator = "+";
+        expression.parse();
 
-        System.out.println(calculator.calculate(5.0, 2.0, operator));
+        System.out.println(calculator.calculate(expression.getLeftOperand(), expression.getRightOperand(), expression.getOperator()));
 
     }
 }
