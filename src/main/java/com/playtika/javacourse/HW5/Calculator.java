@@ -5,7 +5,7 @@ package com.playtika.javacourse.HW5;
  */
 public class Calculator {
 
-    public double calculate(double val1, double val2, String operator) throws NullPointerException{
+    public double calculate(double val1, double val2, String operator) throws NullPointerException, IllegalArgumentException{
         BinaryOperation operation = getOperationFor(operator);
 
         if (operation == null) {
@@ -18,7 +18,7 @@ public class Calculator {
 
 
     //define operator via comparing with enum parameters (returns class of needed operation or null)
-    private BinaryOperation getOperationFor(String operator) throws NullPointerException {
+    private BinaryOperation getOperationFor(String operator) throws NullPointerException, IllegalArgumentException {
             for(OperatorsAvailable Available: OperatorsAvailable.values()){
                 if (operator.equals(Available.getOperatorString())) {
                     return new OperatorFactory().getOperator(Available);
