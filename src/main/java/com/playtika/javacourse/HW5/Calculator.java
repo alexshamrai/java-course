@@ -30,11 +30,7 @@ public class Calculator {
     public static void main(String[] args) {
         Parser expression = new Parser();
         Calculator calculator = new Calculator();
-        try {
-            expression.parse();
-        } catch (ArrayIndexOutOfBoundsException | IllegalArgumentException e) {
-            System.out.println("Expression is incorrect. Exception: " + e.getMessage());
-        }
+        expression.parse();
         try {
             System.out.println(calculator.calculate(expression.getLeftOperand(), expression.getRightOperand(), expression.getOperator()));
         } catch (NullPointerException | IllegalArgumentException e) {

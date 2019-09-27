@@ -17,9 +17,13 @@ public class Parser {
 
     public void parse() {
         String arrayExpression[] = string.split(" ");
-        operator = arrayExpression[1];
-        leftOperand = Double.parseDouble(arrayExpression[0]);
-        rightOperand = Double.parseDouble(arrayExpression[2]);
+        try {
+            operator = arrayExpression[1];
+            leftOperand = Double.parseDouble(arrayExpression[0]);
+            rightOperand = Double.parseDouble(arrayExpression[2]);
+        } catch (ArrayIndexOutOfBoundsException | IllegalArgumentException e) {
+            System.out.println("Expression is incorrect. Exception: " + e.getMessage());
+        }
     }
 
     public String getOperator(){

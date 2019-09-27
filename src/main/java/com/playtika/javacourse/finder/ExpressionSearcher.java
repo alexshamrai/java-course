@@ -19,6 +19,7 @@ public class ExpressionSearcher extends SimpleFileVisitor<Path> {
         this.expression = expression;
 
     }
+
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs)
             throws IOException     {
@@ -26,6 +27,7 @@ public class ExpressionSearcher extends SimpleFileVisitor<Path> {
             String line ;
             int i = 0;
             boolean isNotPrintFileName= true;
+
             while ((line=reader.readLine()) != null) {
                 if (line.contains(expression)) {
                     if(isNotPrintFileName) {
