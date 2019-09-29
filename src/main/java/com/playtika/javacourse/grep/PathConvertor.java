@@ -41,7 +41,7 @@ public class PathConvertor {
 
     private boolean isNotDirectory() throws IOException {
         if (Files.isDirectory(Paths.get(stringPath))) {
-            System.err.println("You are adress to the directory");
+            System.err.println("It's a directory, not a file");
             throw new IOException();
         }
         return true;
