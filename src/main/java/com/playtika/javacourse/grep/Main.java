@@ -1,34 +1,38 @@
 package com.playtika.javacourse.grep;
 
 
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.util.regex.Pattern;
 
 public class Main {
 
 
-        static String stringPath = "C:\\Users\\oshamrai\\Documents\\ForJava\\Daily Activity.txt";
-        static String expression = "***** \t27.07.19\t*****";
+     //   static String filePath = "C:\\Users\\oshamrai\\Documents\\ForJava\\fileForTest.txt";
+      //  static String expression = "дяд";
 
-        public static void main(String[] args) throws IOException {
-            try (BufferedReader reader = Files.newBufferedReader(Paths.get(stringPath));) {
-                String line;
-                int i = 0;
-                // read the file
-                while ((line = reader.readLine()) != null) {
-                    if (line.equals(expression)) {
-                        System.out.println(i + " : " + line);
-                    }
-                    i++;
+        public static void main(String[] args) {
+
+            if (isValid(args)) {
+                PathConvertor pathConvertor = new PathConvertor(args[0]);
+                Pattern pattern = Pattern.compile(String.format("^.*(%s).*$", args[1])); // make a pattern with given expression
+                if (pathConvertor.isValid()) {
+                    Searcher searcher = new Searcher(pathConvertor.convertStringToPath());
+                    searcher.Search(pattern);
                 }
             }
-
+            return;
         }
+
+        static boolean isValid(String[] args) {
+            if (args.length != 2) {
+                System.out.println("Enter 2 arguments: path, expression");
+                return false;
+            }
+            if (args[0].isEmpty()|| args[1].isEmpty()) {
+                return false;
+            }
+            return true;
+        }
+
 
 
 
