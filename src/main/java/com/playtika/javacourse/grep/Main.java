@@ -3,15 +3,17 @@ import java.util.regex.Pattern;
 
 public class Main {
         public static void main(String[] args) {
-            if (isValid(args)) {
-                PathConvertor pathConvertor = new PathConvertor(args[0]);
-                Pattern pattern = Pattern.compile(String.format("^.*(%s).*$", args[1])); // make a pattern with given expression
-                if (pathConvertor.isValid()) {
-                    Searcher searcher = new Searcher(pathConvertor.convertStringToPath());
-                    searcher.Search(pattern);
-                }
+            if (!isValid(args)) {
+                return;
             }
-            return;
+            PathConvertor pathConvertor = new PathConvertor(args[0]);
+
+            if (!pathConvertor.isValid()) {
+                return;
+            }
+            Searcher searcher = new Searcher(pathConvertor.convertStringToPath());
+            Pattern pattern = Pattern.compile(String.format("^.*(%s).*$", args[1])); // make a pattern with given expression
+            searcher.Search(pattern);
         }
 
         static boolean isValid(String[] args) {

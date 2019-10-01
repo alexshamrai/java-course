@@ -21,7 +21,7 @@ public class Searcher {
 
     // read and print string if found
     public void Search(Pattern expression) {
-        try (BufferedReader reader = Files.newBufferedReader(path);) {
+        try (BufferedReader reader = Files.newBufferedReader(path)) {
             String line;
             int i = 0;
             boolean isNotPrinted = true;
@@ -39,7 +39,7 @@ public class Searcher {
                 System.out.println("Expression is not found");
             }
         } catch (Exception e){
-            e.printStackTrace();
+            e.getMessage();
         }
     }
 }

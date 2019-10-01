@@ -5,10 +5,10 @@ import java.nio.file.*;
 
 public class PathConvertor {
 
-    private String stringPath;
+    private String path;
 
     public PathConvertor(String stringPath) {
-        this.stringPath = stringPath;
+        this.path = stringPath;
     }
 
     private boolean validate() {
@@ -24,23 +24,23 @@ public class PathConvertor {
 
     // check file existence. if file exist - do nothing. if not exist throw the exception
     private boolean isExist() throws IOException {
-        if (!Files.exists(Paths.get(stringPath))) {
-            System.err.println("File " + convertLogic() + " does not exist");
-            throw new NoSuchFileException(stringPath);
+        if (!Files.exists(Paths.get(path))) {
+            System.err.println("File " + convertStringToPath() + " does not exist");
+            throw new NoSuchFileException(path);
         }
         return true;
     }
 
     private boolean isReadable() throws IOException {
-        if (!Files.isReadable(Paths.get(stringPath))) {
+        if (!Files.isReadable(Paths.get(path))) {
             System.err.println("Cannot read the file. Access Denied");
-            throw new AccessDeniedException(stringPath);
+            throw new AccessDeniedException(path);
         }
         return true;
     }
 
     private boolean isNotDirectory() throws IOException {
-        if (Files.isDirectory(Paths.get(stringPath))) {
+        if (Files.isDirectory(Paths.get(path))) {
             System.err.println("It's a directory, not a file");
             throw new IOException();
         }
@@ -48,15 +48,8 @@ public class PathConvertor {
     }
 
     // method to convert given String to absolute path
-    private Path convertLogic(){
-        if (Paths.get(stringPath).isAbsolute()) {
-            return Paths.get(stringPath);
-        }
-        return Paths.get(stringPath).toAbsolutePath();
-    }
-
     public Path convertStringToPath() {
-        return convertLogic();
+        return Paths.get(path).toAbsolutePath();
     }
 
     public boolean isValid() {
