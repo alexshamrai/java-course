@@ -1,4 +1,5 @@
 package com.playtika.javacourse.grep;
+import java.io.IOException;
 import java.util.regex.Pattern;
 
 public class Main {
@@ -13,10 +14,15 @@ public class Main {
             }
             Searcher searcher = new Searcher(pathConvertor.convertStringToPath());
             Pattern pattern = Pattern.compile(String.format("^.*(%s).*$", args[1])); // make a pattern with given expression
-            searcher.Search(pattern);
+            try {
+                searcher.Search(pattern);
+            } catch (IOException e) {
+                System.err.println(e.toString());
+            }
+
         }
 
-        static boolean isValid(String[] args) {
+        private static boolean isValid(String[] args) {
             if (args.length != 2) {
                 System.out.println("Run program with 2 arguments: path, expression");
                 return false;

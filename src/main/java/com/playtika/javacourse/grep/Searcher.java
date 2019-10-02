@@ -1,9 +1,10 @@
 package com.playtika.javacourse.grep;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.regex.Pattern;
 
 /*
@@ -20,7 +21,7 @@ public class Searcher {
     }
 
     // read and print string if found
-    public void Search(Pattern expression) {
+    public void Search(Pattern expression) throws IOException {
         try (BufferedReader reader = Files.newBufferedReader(path)) {
             String line;
             int i = 0;
@@ -38,7 +39,8 @@ public class Searcher {
             if (isNotPrinted) {
                 System.out.println("Expression is not found");
             }
-        } catch (Exception e){
+
+        } catch (NoSuchFileException e){
             e.getMessage();
         }
     }

@@ -1,48 +1,34 @@
 package com.playtika.javacourse.grep;
 
-import java.io.IOException;
 import java.nio.file.*;
 
 public class PathConvertor {
 
     private String path;
-
     public PathConvertor(String stringPath) {
         this.path = stringPath;
     }
 
-    private boolean validate() {
-        try {
-            if (isExist() && isReadable() && isNotDirectory()) {
-                return true;
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
-    // check file existence. if file exist - do nothing. if not exist throw the exception
-    private boolean isExist() throws IOException {
+    // check file existence. if file does not exist print an error
+    private boolean isExist() {
         if (!Files.exists(Paths.get(path))) {
-            System.err.println("File " + convertStringToPath() + " does not exist");
-            throw new NoSuchFileException(path);
+            System.err.println("File " + convertStringToPath() + " does not exists");
         }
         return true;
     }
 
-    private boolean isReadable() throws IOException {
+    // check if file is readable. if file does not exist print an error
+    private boolean isReadable() {
         if (!Files.isReadable(Paths.get(path))) {
-            System.err.println("Cannot read the file. Access Denied");
-            throw new AccessDeniedException(path);
+            System.err.println("Cannot read file: "+ convertStringToPath()+ ". Access Denied");
         }
         return true;
     }
 
-    private boolean isNotDirectory() throws IOException {
+    // check if file is not a directory. if file does not exist print an error
+    private boolean isNotDirectory() {
         if (Files.isDirectory(Paths.get(path))) {
-            System.err.println("It's a directory, not a file");
-            throw new IOException();
+            System.err.println(convertStringToPath() + " is a directory, not a file");
         }
         return true;
     }
@@ -52,7 +38,12 @@ public class PathConvertor {
         return Paths.get(path).toAbsolutePath();
     }
 
+    // validate path
     public boolean isValid() {
-        return validate();
+        if (isExist() && isReadable() && isNotDirectory()) {
+            return true;
+        }
+        return false;
     }
+
 }
