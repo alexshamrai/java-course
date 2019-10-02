@@ -2,6 +2,7 @@ package com.playtika.javacourse.grep;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.nio.file.AccessDeniedException;
 import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
@@ -40,7 +41,7 @@ public class Searcher {
                 System.out.println("Expression is not found");
             }
 
-        } catch (NoSuchFileException e){
+        } catch (NoSuchFileException | AccessDeniedException e){
             e.getMessage();
         }
     }
