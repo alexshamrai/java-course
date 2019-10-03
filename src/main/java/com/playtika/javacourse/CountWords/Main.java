@@ -20,7 +20,7 @@ public class Main {
                 System.out.println(entry);
             }
         } catch (IOException e) {
-            System.out.println("Something went wrong: " + e.getMessage());
+            System.out.println("Something went wrong - " + e);
         }
 
     }
