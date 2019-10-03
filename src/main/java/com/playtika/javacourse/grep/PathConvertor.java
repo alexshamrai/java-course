@@ -13,6 +13,7 @@ public class PathConvertor {
     private boolean isExist() {
         if (!Files.exists(Paths.get(path))) {
             System.err.println("File " + convertStringToPath() + " does not exists");
+            return false;
         }
         return true;
     }
@@ -21,6 +22,7 @@ public class PathConvertor {
     private boolean isReadable() {
         if (!Files.isReadable(Paths.get(path))) {
             System.err.println("Cannot read file: "+ convertStringToPath()+ ". Access Denied");
+            return false;
         }
         return true;
     }
@@ -29,6 +31,7 @@ public class PathConvertor {
     private boolean isNotDirectory() {
         if (Files.isDirectory(Paths.get(path))) {
             System.err.println(convertStringToPath() + " is a directory, not a file");
+            return false;
         }
         return true;
     }

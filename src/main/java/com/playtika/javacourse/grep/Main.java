@@ -10,6 +10,7 @@ public class Main {
             PathConvertor pathConvertor = new PathConvertor(args[0]);
 
             if (!pathConvertor.isValid()) {
+                System.out.println("Invalid path");
                 return;
             }
             Searcher searcher = new Searcher(pathConvertor.convertStringToPath());
