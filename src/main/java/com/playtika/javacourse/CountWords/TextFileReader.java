@@ -3,10 +3,15 @@ package com.playtika.javacourse.CountWords;
 import sun.misc.Regexp;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.AccessDeniedException;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.regex.Pattern;
 
 /*
@@ -17,10 +22,10 @@ import java.util.regex.Pattern;
 public class TextFileReader {
 
     private Path path;
-    private Map<String, Integer> wordsMap = new HashMap<String ,Integer>();
-    private final String SPLITSYMBOLS = "[\\d{1} \t\n,.;:!?<>*\\[\\]'@#$%\"()]";
+    private Map<String, Integer> wordsMap = new TreeMap<>(); // TreeMap is used to get Map sorted by key for output
+    private final String SPLITSYMBOLS = "[\\d{1} \t\n,.;:!?<>*\\[\\]'&@#$%\"()-]";
 
-    public Map<String, Integer> readFile(Path path) {
+    public Map<String, Integer> readFile(Path path) throws FileNotFoundException, IOException {
         String line;
         String[] words;
 
@@ -38,8 +43,6 @@ public class TextFileReader {
                 }
 
             }
-        } catch (Exception e){
-            e.printStackTrace();
         }
         return wordsMap;
     }
