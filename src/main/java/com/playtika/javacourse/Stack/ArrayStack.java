@@ -44,26 +44,23 @@ public class ArrayStack<E>  extends AbstractCollection<E> implements Stack<E>{
 
     @Override
     public Iterator<E> iterator() {
-
-        class InnerClass implements Iterator<E> {
-            private int currentIndex = 0;
-
-            @Override
-            public boolean hasNext() {
-                return (currentIndex < size);
-            }
-
-            @Override
-            public E next() throws NoSuchElementException{
-                if (!hasNext()){
-                    throw new NoSuchElementException("There is no element");
-                }
-                return (E) elements[currentIndex++];
-            }
-        }
-
         return new InnerClass();
     }
 
+    class InnerClass implements Iterator<E> {
+        private int currentIndex = 0;
 
+        @Override
+        public boolean hasNext() {
+            return (currentIndex < size);
+        }
+
+        @Override
+        public E next() throws NoSuchElementException{
+            if (!hasNext()){
+                throw new NoSuchElementException("There is no element");
+            }
+            return (E) elements[currentIndex++];
+        }
+    }
 }
