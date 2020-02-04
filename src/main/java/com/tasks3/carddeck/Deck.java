@@ -24,11 +24,12 @@ public class Deck {
 
     private void fillDeck() {
         int n = 0;
-        for (int i = 0; i < Rank.values.length - 1; i++) {
-            for (int j = 0; j < Suit.values.length - 1; j++) {
-                cards[n] = new Card(Rank.values[i], Suit.values[j]);
-                System.out.println(cards[n].getRank().toString() + cards[n].getSuit().toString());
-                System.out.println("N = " + n);
+        for (int i = 0; i < Suit.values.length; i++) {
+            for (int j = 0; j < Rank.values.length; j++) {
+                cards[n] = new Card(Rank.values[j], Suit.values[i]);
+                // System.out.println("N = " + n);
+                // System.out.println(cards[n].getRank().toString() + cards[n].getSuit().toString());
+                System.out.println(cards[n].getRank().getName() + " "+ cards[n].getSuit().getName());
                 n++;
             }
 
